@@ -1,0 +1,36 @@
+\documentclass{article}
+\usepackage{mathtools,amsmath,amssymb,amsthm,enumerate}
+\usepackage[margin=1in]{geometry}
+
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\rhead{Chasity Savella, 
+Matthew Popescu, 
+Xuan Tang(900996708)
+}
+\lhead{\textbf{Assignment 5} - Spring CS311}
+\rfoot{Page \thepage}
+
+
+\begin{document}
+\paragraph{Problem 1} Use a reduction to show that the language $ALL_{TM}$ is undecidable
+\[ALL_{TM} = \{ \langle M \rangle \;|\; \mbox{where $M$ is a TM and $L(M) = \Sigma*$} \}\]
+
+\paragraph{Problem 2} A {\em useless state} in a Turing machine
+is one that is never entered on any input string.  Consider the 
+problem of determining whether a Turing Machine has any useless 
+states.  Formulate this problem as a language and show that it 
+is undecidable.
+
+\paragraph{Problem 3} If $A \leq_m B$ and $B$ is a regular language,
+does this imply that $A$ is a regular language? Why or why not?
+
+\paragraph{Problem 4} Prove that the language
+\[ LOOP_{TM} = \{ \langle M \rangle \;|\; M \text{ is a TM and $M$ loops on all inputs} \} \]
+is not recognizable.
+
+\paragraph{Problem 5} Prove that the 3-SAT problem discussed in class is an element of $NP$ by
+giving a verifier and a NTM decider that run in poly-time.
+
+\end{document}

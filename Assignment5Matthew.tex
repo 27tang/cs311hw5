@@ -1,0 +1,58 @@
+\documentclass{article}
+\usepackage{enumerate,mathtools,amsmath,amssymb,amsthm}
+
+\title{\vspace{-3ex} \bf Assignment 5 \\[1ex]}
+\title{\vspace{-3ex} \bf Assignment 5 \\[1ex]\rm\normalsize CS 311, Spring 2015 \\ Due: June 3, 2014}
+
+\date{}
+\author{}
+
+\begin{document}
+\maketitle
+\paragraph{Problem 1} Use a reduction to show that the language $ALL_{TM}$ is undecidable
+\[ALL_{TM} = \{ \langle M \rangle \;|\; \mbox{where $M$ is a TM and $L(M) = \Sigma*$} \}\]
+
+\paragraph{} Lets suppose that $ALL_{TM}$ is decidable by $R$. Using this assumption, lets show how to decide the acceptance problem, $A_{TM}$.  On the input $\langle M,w\rangle$, construct $M_1$ as follows:
+\\\\
+\noindent $M_1 = $ "On input $x$, simulate $M$ on $w$: 
+    \begin{enumerate}[\indent 1.]
+    \item If $M$ accepts, \em accept.\em
+    \item If $M$ rejects, \em reject."
+    \end{enumerate}
+\paragraph{} Note, that $L(M_1) = \Sigma*$ if $M$ accepts $w$, and will be $\emptyset$ if $M$ rejects $w$. This ensures that the TM we are about to construct will only deal with the empty language or the "all" language. Nothing in the middle. Now, we can define $TM$ $S$.
+\\\\
+\noindent $S = $ "On input $\langle M,w\rangle$, construct $M_1$ as shown above.
+	\begin{enumerate}[\indent 1.]
+	\item Run $R$ on input $\langle M_1\rangle$. If $R$ accepts, \em accept.\em
+	\item Otherwise, \em reject."\em\\
+	\end{enumerate}
+\noindent Here we have shown that if we assume there exists some $R$ that can decide $ALL_{TM}$, we can construct a reduction that would make $A_{TM}$ decidable. Since $A_{TM}$ was proven undecidable (using diagonalization), there cannot exist an $R$ that decides $ALL_{TM}$. Therefore, it is undecidable.
+
+\paragraph{Problem 2} A {\em useless state} in a Turing machine
+is one that is never entered on any input string.  Consider the 
+problem of determining whether a Turing Machine has any useless 
+states.  Formulate this problem as a language and show that it 
+is undecidable.
+
+\paragraph{Solution} We should formulate the language as follows:
+\[USELESS_{TM} = \{ \langle M,q \rangle \;|\; \mbox{where $M$ is a TM and $q$ is a state in $M$} \}\]
+\noindent Suppose the turing machine $R$ decides USELESS. R takes a Turing machine and a state and determines if that state is useless. So, give R the input $\langle M, q_{accept}\rangle$ so it can determine if the accept state of M is useless. If it is, the language is empty. ($\emptyset$) Lets define S as the turing machine that will decide $E_{TM}$, which was proven in the book to be undecidable. Give S the input M, and run R on $\langle M, q_{accept}\rangle$.
+\\If R accepts, \em accept.\em
+\\If R rejects, \em reject. \em
+\\\\So, using the assumption that USELESS is decidable, we found a reduction from $E_{TM}$ to USELESS showing that $E_{TM}$ is decidable. But, $E_{TM}$ was already proven to be undecidable, so our assumption is false. R does not exist.
+
+\paragraph{Problem 3} If $A \leq_m B$ and $B$ is a regular language,
+does this imply that $A$ is a regular language? Why or why not?
+\paragraph{Solution} No it does not. The language $0^i1^i$ is not regular, but it can be mapped to this language, which is regular: $0^i1^k$
+\\\\make the reduction function as follows. $f(w) = 011$ if $w \in A$ or $f(w) = 10$ if $w \notin A$.
+\\\\This way, $w \in A$ iff $f(w) = 011$ and $f(w) \in B$.
+\\\\So B is a regular language, but A is not.
+
+\paragraph{Problem 4} Prove that the language
+\[ LOOP_{TM} = \{ \langle M \rangle \;|\; M \text{ is a TM and $M$ loops on all inputs} \} \]
+is not recognizable.
+
+\paragraph{Problem 5} Prove that the 3-SAT problem discussed in class is an element of $NP$ by
+giving a verifier and a NTM decider that run in poly-time.
+
+\end{document}

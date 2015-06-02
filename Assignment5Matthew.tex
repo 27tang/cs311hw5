@@ -12,9 +12,9 @@
 \paragraph{Problem 1} Use a reduction to show that the language $ALL_{TM}$ is undecidable
 \[ALL_{TM} = \{ \langle M \rangle \;|\; \mbox{where $M$ is a TM and $L(M) = \Sigma*$} \}\]
 
-\paragraph{} Lets suppose that $ALL_{TM}$ is decidable by $R$. Using this assumption, lets show how to decide the acceptance problem, $A_{TM}$.  On the input $\langle M,w\rangle$, construct $M_1$ as follows:
+\paragraph{} Lets suppose that a turing machine, $R$, decides $ALL_{TM}$. Using this assumption, lets show how to decide the acceptance problem, $A_{TM}$.  On the input $\langle M,w\rangle$, construct $M_1$ as follows:
 \\\\
-\noindent $M_1 = $ "On input $x$, simulate $M$ on $w$: 
+\noindent $M_1 = $ "On input string $x$, simulate $M$ on $w$: 
     \begin{enumerate}[\indent 1.]
     \item If $M$ accepts, \em accept.\em
     \item If $M$ rejects, \em reject."
@@ -47,10 +47,13 @@ does this imply that $A$ is a regular language? Why or why not?
 \\\\make the reduction function as follows. $f(w) = 011$ if $w \in A$ or $f(w) = 10$ if $w \notin A$.
 \\\\This way, $w \in A$ iff $f(w) = 011$ and $f(w) \in B$.
 \\\\So B is a regular language, but A is not.
+\\We know that $f$ is computable because the language of $A$ is turing decidable because it is a Context Free Language.
 
 \paragraph{Problem 4} Prove that the language
 \[ LOOP_{TM} = \{ \langle M \rangle \;|\; M \text{ is a TM and $M$ loops on all inputs} \} \]
 is not recognizable.
+\\
+\paragraph{Solution} Assume LOOP is recog. Show that co-LOOP is also recog. Now show that both are decidable (theorem). Reduce $A_{TM}$ to LOOP to show conclude undecidable, which makes LOOP unrecog.
 
 \paragraph{Problem 5} Prove that the 3-SAT problem discussed in class is an element of $NP$ by
 giving a verifier and a NTM decider that run in poly-time.

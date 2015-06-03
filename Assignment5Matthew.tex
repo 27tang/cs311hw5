@@ -19,7 +19,7 @@
     \item If $M$ accepts, \em accept.\em
     \item If $M$ rejects, \em reject."
     \end{enumerate}
-\paragraph{} Note, that $L(M_1) = \Sigma*$ if $M$ accepts $w$, and will be $\emptyset$ if $M$ rejects $w$. This ensures that the TM we are about to construct will only deal with the empty language or the "all" language. Nothing in the middle. Now, we can define $TM$ $S$.
+\paragraph{} Note, that if $M$ accepts $w$, $L(M_1) = \Sigma*$. Otherwise, $L(M_1) = \emptyset$. This ensures that the TM we are about to construct will only deal with the empty language or the "all" language. Now, we can define TM $S$ as follows:
 \\\\
 \noindent $S = $ "On input $\langle M,w\rangle$, construct $M_1$ as shown above.
 	\begin{enumerate}[\indent 1.]
@@ -36,29 +36,28 @@ is undecidable.
 
 \paragraph{Solution} We should formulate the language as follows:
 \[USELESS_{TM} = \{ \langle M,q \rangle \;|\; \mbox{where $M$ is a TM and $q$ is a state in $M$} \}\]
-\noindent Suppose the turing machine $R$ decides USELESS. R takes a Turing machine and a state and determines if that state is useless. So, give R the input $\langle M, q_{accept}\rangle$ so it can determine if the accept state of M is useless. If it is, the language is empty. ($\emptyset$) Lets define S as the turing machine that will decide $E_{TM}$, which was proven in the book to be undecidable. Give S the input M, and run R on $\langle M, q_{accept}\rangle$.
+\noindent Suppose the turing machine $R$ decides USELESS. R takes a Turing machine and a state as input and determines if that state is useless. So, give R the input $\langle M, q_{accept}\rangle$ so it can determine if the accept state of M is useless. If it is, the language is empty. Lets define S as the turing machine that will decide $E_{TM}$, which was proven in the book to be undecidable. Give S the input M, and run R on $\langle M, q_{accept}\rangle$.
 \\If R accepts, \em accept.\em
 \\If R rejects, \em reject. \em
-\\\\So, using the assumption that USELESS is decidable, we found a reduction from $E_{TM}$ to USELESS showing that $E_{TM}$ is decidable. But, $E_{TM}$ was already proven to be undecidable, so our assumption is false. R does not exist.
+\\\\Therefore, using the assumption that USELESS is decidable, we found a reduction from $E_{TM}$ to USELESS showing that $E_{TM}$ is decidable. However, $E_{TM}$ was already proven to be undecidable, so our assumption is false and we can conclude that R does not exist.
 
 \paragraph{Problem 3} If $A \leq_m B$ and $B$ is a regular language,
 does this imply that $A$ is a regular language? Why or why not?
-\paragraph{Solution} No it does not. The language $0^i1^i$ is not regular, but it can be mapped to this language, which is regular: $0^i1^k$
-\\\\make the reduction function as follows. $f(w) = 0^i1^i$ if $w \in A$ or $f(w) = 10$ if $w \notin A$.
+\paragraph{Solution} No it does not. The language $0^i1^i$ is not regular, but it can be mapped to the language, $0^i1^k$, which is regular.
+\\\\The reduction function is as follows: $f(w) = 0^i1^i$ if $w \in A$ or $f(w) = 10$ if $w \notin A$.
 \\\\This way, $w \in A$ iff $f(w) = 0^i1^i$ and $f(w) \in B$, where $i \geq 0$.
-\\\\So B is a regular language, but A is not.
-\\We know that $f$ is computable because the language of $A$ is turing decidable because it is a Context Free Language.
+\\\\This shows that B is a regular language, but A is not.
+\\The language $A$ is a Context Free Language, so it is also turing decidable (theorem 4.9). Therefore, we can conclude that $f$ is a computable function.
 
 \paragraph{Problem 4} Prove that the language
 \[ LOOP_{TM} = \{ \langle M \rangle \;|\; M \text{ is a TM and $M$ loops on all inputs} \} \]
 is not recognizable.
 \\
-\paragraph{Solution} Assume LOOP is recog. Show that co-LOOP is also recog. Now show that both are decidable (theorem). Reduce $A_{TM}$ to LOOP to show conclude undecidable, which makes LOOP unrecog.
 \paragraph{Solution} First, assume $LOOP_{TM}$ is recognizable. We will show this assumption to be false later.
 \\$\overline{LOOP}_{TM}$ can be described as follows:
 \[\overline{ LOOP}_{TM} = \{ \langle M \rangle \;|\; M \text{ is a TM and $M$ halts on at least one input} \} \]
-\noindent We can build a recognizer for this turing machine by non-deterministically running every input until at least one of them halts. By definition, this makes it a recognizer.
-\\\\ So far, we have assumed $LOOP_{TM}$ is recognizable and we have shown $\overline{LOOP}_{TM}$ is also recognizable. From this, we can conclude that both are decidable (theorem). 
+\noindent We can build a recognizer for this turing machine by non-deterministically running every input until the TM halts for at least one of them. By definition, this makes it a recognizer.
+\\\\ So far, we have assumed $LOOP_{TM}$ is turing recognizable and we have shown $\overline{LOOP}_{TM}$ is also turing recognizable. From this, we can conclude that both are decidable (theorem 4.22). 
 \\\\ In order to prove our original assumption false, we must show a reduction from a currently known undecidable $TM$ to either $LOOP_{TM}$ or $\overline{LOOP}_{TM}$ to show that one of them is undecidable. We will show that $LOOP_{TM}$ is undecidable.
 \\\\ Let $R$ be a decider for $LOOP_{TM}$. Now let $S$ be a decider for $A_{TM}$. Define it as follows:
 \\\\
@@ -69,8 +68,4 @@ is not recognizable.
     \item If $R$ rejects, reject."
     \end{enumerate}
 \noindent Here we have shown that $A_{TM}$ is decidable using our assumption that $LOOP_{TM}$ is recognizable and therefore decidable. However, $A_{TM}$ was previously proven to be undecidable by diagonalization in the textbook. So, $LOOP_{TM}$ is undecidable, and therefore unrecognizable. 
-
-\paragraph{Problem 5} Prove that the 3-SAT problem discussed in class is an element of $NP$ by
-giving a verifier and a NTM decider that run in poly-time.
-
 \end{document}
